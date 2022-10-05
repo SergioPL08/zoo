@@ -1,3 +1,8 @@
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import zoo.Animal;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,17 +12,19 @@
  *
  * @author sergio
  */
-public class addAnimal extends javax.swing.JFrame {
-    
-    
+public class addAnimal extends javax.swing.JFrame implements Serializable{
+    ArrayList<Animal> lista;
     
     /**
      * Creates new form addAnimañ
      */
     public addAnimal() {
         initComponents();
+        lista = new ArrayList<Animal>();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +44,10 @@ public class addAnimal extends javax.swing.JFrame {
         TEspecie = new javax.swing.JTextField();
         TSubespecie = new javax.swing.JTextField();
         SPesoAnimal = new javax.swing.JSpinner();
-        addAnimal = new javax.swing.JToggleButton();
+        JButtonAddAnimal = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -48,7 +57,7 @@ public class addAnimal extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 400));
         java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
         jPanel2Layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0};
-        jPanel2Layout.rowHeights = new int[] {0, 25, 0, 25, 0, 25, 0, 25, 0, 25, 0};
+        jPanel2Layout.rowHeights = new int[] {0, 25, 0, 25, 0, 25, 0, 25, 0, 25, 0, 25, 0};
         jPanel2.setLayout(jPanel2Layout);
 
         LnombreAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -84,11 +93,6 @@ public class addAnimal extends javax.swing.JFrame {
         jPanel2.add(LpesoAnimal, gridBagConstraints);
 
         TNombreAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
-        TNombreAnimal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TNombreAnimalActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -101,29 +105,30 @@ public class addAnimal extends javax.swing.JFrame {
         jPanel2.add(TEspecie, gridBagConstraints);
 
         TSubespecie.setPreferredSize(new java.awt.Dimension(100, 24));
-        TSubespecie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TSubespecieActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         jPanel2.add(TSubespecie, gridBagConstraints);
 
+        SPesoAnimal.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
         SPesoAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         jPanel2.add(SPesoAnimal, gridBagConstraints);
 
-        addAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
-        addAnimal.setText("Añadir");
+        JButtonAddAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        JButtonAddAnimal.setText("Añadir");
+        JButtonAddAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonAddAnimalActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 3;
-        jPanel2.add(addAnimal, gridBagConstraints);
+        jPanel2.add(JButtonAddAnimal, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -136,6 +141,28 @@ public class addAnimal extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel2.add(jLabel1, gridBagConstraints);
+
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        jPanel2.add(jButtonGuardar, gridBagConstraints);
+
+        jButtonCargar.setText("Cargar");
+        jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCargarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        jPanel2.add(jButtonCargar, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,20 +177,30 @@ public class addAnimal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(148, 148, 148)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TSubespecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TSubespecieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TSubespecieActionPerformed
+    private void JButtonAddAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonAddAnimalActionPerformed
+        String nombre = TNombreAnimal.getText();
+        String especie = TEspecie.getText();
+        String subespecie = TSubespecie.getText();
+        float peso = (float) SPesoAnimal.getValue();
+        //(String name, String especie, String subespecie, float peso)
+        Animal animal = new Animal(nombre,especie,subespecie,peso);
+        lista.add(animal);
+    }//GEN-LAST:event_JButtonAddAnimalActionPerformed
 
-    private void TNombreAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNombreAnimalActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TNombreAnimalActionPerformed
+    }//GEN-LAST:event_jButtonCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +239,7 @@ public class addAnimal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton JButtonAddAnimal;
     private javax.swing.JLabel LespecieAnimal;
     private javax.swing.JLabel LnombreAnimal;
     private javax.swing.JLabel LpesoAnimal;
@@ -210,7 +248,8 @@ public class addAnimal extends javax.swing.JFrame {
     private javax.swing.JTextField TEspecie;
     private javax.swing.JTextField TNombreAnimal;
     private javax.swing.JTextField TSubespecie;
-    private javax.swing.JToggleButton addAnimal;
+    private javax.swing.JButton jButtonCargar;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

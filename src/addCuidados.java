@@ -1,10 +1,17 @@
 
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.xml.transform.OutputKeys;
 import zoo.Animal;
 
 /*
@@ -56,6 +63,23 @@ public class addCuidados extends javax.swing.JFrame {
             catch(IOException f){
             JOptionPane.showMessageDialog(null,f.getMessage());
 
+        }
+        
+        
+        }
+    
+        public void guardar(){
+            try{
+                FileOutputStream fis = new FileOutputStream ("animales.dat");
+                ObjectOutputStream os = new ObjectOutputStream(fis);
+                for(int i=0; i<animal.size();i++){
+                    os.writeObject(animal.get(i));
+                }
+                os.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
     
