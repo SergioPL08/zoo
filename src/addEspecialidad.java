@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+import zoo.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -24,6 +27,7 @@ public class addEspecialidad extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         addEspecialidad = new javax.swing.JLabel();
@@ -33,112 +37,117 @@ public class addEspecialidad extends javax.swing.JFrame {
         jSpinnerSalarioMedioEsp = new javax.swing.JSpinner();
         JLNombre1 = new javax.swing.JLabel();
         jSpinnerNPeligrosidad = new javax.swing.JSpinner();
-        jButtonGuardar = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {0, 35, 0, 35, 0};
+        jPanel1Layout.rowHeights = new int[] {0, 32, 0, 32, 0, 32, 0, 32, 0};
+        jPanel1.setLayout(jPanel1Layout);
 
         addEspecialidad.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        addEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
+        addEspecialidad.setForeground(new java.awt.Color(51, 51, 51));
         addEspecialidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addEspecialidad.setText("Añadir Especialidad");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        jPanel1.add(addEspecialidad, gridBagConstraints);
 
         JLSalarioMedio.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLSalarioMedio.setForeground(new java.awt.Color(255, 255, 255));
+        JLSalarioMedio.setForeground(new java.awt.Color(51, 51, 51));
         JLSalarioMedio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLSalarioMedio.setText("Salario Medio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        jPanel1.add(JLSalarioMedio, gridBagConstraints);
+
+        jTFNombreEsp.setPreferredSize(new java.awt.Dimension(100, 24));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel1.add(jTFNombreEsp, gridBagConstraints);
 
         JLNombreEsp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNombreEsp.setForeground(new java.awt.Color(255, 255, 255));
+        JLNombreEsp.setForeground(new java.awt.Color(51, 51, 51));
         JLNombreEsp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNombreEsp.setText("Nombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jPanel1.add(JLNombreEsp, gridBagConstraints);
+
+        jSpinnerSalarioMedioEsp.setPreferredSize(new java.awt.Dimension(100, 26));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        jPanel1.add(jSpinnerSalarioMedioEsp, gridBagConstraints);
 
         JLNombre1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNombre1.setForeground(new java.awt.Color(255, 255, 255));
+        JLNombre1.setForeground(new java.awt.Color(51, 51, 51));
         JLNombre1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNombre1.setText("Nivel Peligrosidad");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        jPanel1.add(JLNombre1, gridBagConstraints);
 
-        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
-        jButtonGuardar.setText("Añadir");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jSpinnerNPeligrosidad.setPreferredSize(new java.awt.Dimension(100, 26));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        jPanel1.add(jSpinnerNPeligrosidad, gridBagConstraints);
+
+        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        jButtonAdd.setText("Añadir");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                jButtonAddActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        jPanel1.add(jButtonAdd, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(addEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JLSalarioMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSpinnerNPeligrosidad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerSalarioMedioEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(jTFNombreEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(146, 146, 146)
-                    .addComponent(JLNombreEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(695, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(addEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64)
-                .addComponent(jTFNombreEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLSalarioMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerSalarioMedioEsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerNPeligrosidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addComponent(jButtonGuardar)
-                .addContainerGap(207, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(104, 104, 104)
-                    .addComponent(JLNombreEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(452, Short.MAX_VALUE)))
+                .addGap(17, 17, 17)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        String nombre = jTFNombreEsp.getText();
+        float nPeligr = (float) jSpinnerNPeligrosidad.getValue();
+        float salario = (float) jSpinnerSalarioMedioEsp.getValue();
+        if(nombre.equals("")){
+            JOptionPane.showInputDialog(null, "Introduce el nombre");
+        }
+        else{
+            Especialidad esp = new Especialidad (nombre,salario,nPeligr);
+        }
+    }//GEN-LAST:event_jButtonAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +189,7 @@ public class addEspecialidad extends javax.swing.JFrame {
     private javax.swing.JLabel JLNombreEsp;
     private javax.swing.JLabel JLSalarioMedio;
     private javax.swing.JLabel addEspecialidad;
-    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonAdd;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinnerNPeligrosidad;
     private javax.swing.JSpinner jSpinnerSalarioMedioEsp;

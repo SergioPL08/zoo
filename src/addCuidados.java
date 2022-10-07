@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.transform.OutputKeys;
-import zoo.Animal;
+import zoo.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -40,23 +40,17 @@ public class addCuidados extends javax.swing.JFrame {
     public void rellenaAnimales(){
         try {
             FileInputStream file = new FileInputStream ("Animales.dat");
-            ObjectInputStream inputFile = new ObjectInputStream(file);
-
-        
+            ObjectInputStream inputFile = new ObjectInputStream(file);      
             boolean finalFichero=false;
             while(!finalFichero){
-
                 try{
-                              
-                        animal.add((Animal)inputFile.readObject());
-
+                    animal.add((Animal)inputFile.readObject());
                     }catch(EOFException e){
                         finalFichero = true;
                     }           
                     catch(Exception f){
                         JOptionPane.showMessageDialog(null,f.getMessage());
                     }
-                
             }
             inputFile.close();
             }
@@ -101,7 +95,7 @@ public class addCuidados extends javax.swing.JFrame {
         TTipoComida = new javax.swing.JTextField();
         THabitat = new javax.swing.JTextField();
         SPrecioMedio = new javax.swing.JSpinner();
-        addAnimal = new javax.swing.JToggleButton();
+        addCuidado = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         SPeriodicidad = new javax.swing.JSpinner();
         LCantidadComida1 = new javax.swing.JLabel();
@@ -113,14 +107,17 @@ public class addCuidados extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0};
+        jPanel1Layout.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
+        jPanel1.setLayout(jPanel1Layout);
 
         LTipoComida.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         LTipoComida.setForeground(new java.awt.Color(51, 51, 51));
         LTipoComida.setText("Tipo Comida");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 8;
         jPanel1.add(LTipoComida, gridBagConstraints);
 
         LHabitat.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -128,7 +125,7 @@ public class addCuidados extends javax.swing.JFrame {
         LHabitat.setText("Habitat");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 16;
         jPanel1.add(LHabitat, gridBagConstraints);
 
         LsubespecieAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -136,7 +133,7 @@ public class addCuidados extends javax.swing.JFrame {
         LsubespecieAnimal.setText("Precio Medio");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 24;
         jPanel1.add(LsubespecieAnimal, gridBagConstraints);
 
         LAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -144,7 +141,7 @@ public class addCuidados extends javax.swing.JFrame {
         LAnimal.setText("Animal");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridy = 48;
         jPanel1.add(LAnimal, gridBagConstraints);
 
         TTipoComida.setPreferredSize(new java.awt.Dimension(100, 24));
@@ -154,29 +151,35 @@ public class addCuidados extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 8;
         jPanel1.add(TTipoComida, gridBagConstraints);
 
         THabitat.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 16;
         jPanel1.add(THabitat, gridBagConstraints);
 
+        SPrecioMedio.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
         SPrecioMedio.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 24;
         jPanel1.add(SPrecioMedio, gridBagConstraints);
 
-        addAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
-        addAnimal.setText("Añadir");
+        addCuidado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        addCuidado.setText("Añadir");
+        addCuidado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCuidadoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
-        gridBagConstraints.gridwidth = 5;
-        jPanel1.add(addAnimal, gridBagConstraints);
+        gridBagConstraints.gridy = 52;
+        gridBagConstraints.gridwidth = 9;
+        jPanel1.add(addCuidado, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -186,14 +189,15 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(jLabel1, gridBagConstraints);
 
+        SPeriodicidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         SPeriodicidad.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 40;
         jPanel1.add(SPeriodicidad, gridBagConstraints);
 
         LCantidadComida1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -201,27 +205,28 @@ public class addCuidados extends javax.swing.JFrame {
         LCantidadComida1.setText("Cantidad Comida (kg)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 32;
         jPanel1.add(LCantidadComida1, gridBagConstraints);
 
+        SCantidadComida1.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
         SCantidadComida1.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 32;
         jPanel1.add(SCantidadComida1, gridBagConstraints);
 
         LPeridiocidad1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         LPeridiocidad1.setForeground(new java.awt.Color(51, 51, 51));
-        LPeridiocidad1.setText("Periodicidad Comida");
+        LPeridiocidad1.setText("Periodicidad Comida (veces al día)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 40;
         jPanel1.add(LPeridiocidad1, gridBagConstraints);
 
         jAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 48;
         jPanel1.add(jAnimal, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,7 +234,7 @@ public class addCuidados extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(153, 153, 153)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -247,6 +252,26 @@ public class addCuidados extends javax.swing.JFrame {
     private void TTipoComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TTipoComidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TTipoComidaActionPerformed
+
+    private void addCuidadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCuidadoActionPerformed
+        String tipoComida = TTipoComida.getText();
+        String habitat = THabitat.getText();
+        float cantComida = (float) SCantidadComida1.getValue();
+        float precioMedio = (float) SPrecioMedio.getValue();
+        int periodicidad = (int) SPeriodicidad.getValue();
+        if(tipoComida.equals("")){
+            JOptionPane.showInputDialog(null, "Los animales no viven del aire, ¿sabes?");
+        }
+        else if(habitat.equals("")){
+            JOptionPane.showInputDialog(null,"Los animales viven no viven en el espacio");
+        }
+        else{
+            //(String tipoComida, String habitat, float costePromedio, float cantidadComidaKG, int periodicidadComidaDias)
+            Cuidados cuidado = new Cuidados(tipoComida, habitat, precioMedio, cantComida, periodicidad);
+        }
+            
+        
+    }//GEN-LAST:event_addCuidadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,7 +321,7 @@ public class addCuidados extends javax.swing.JFrame {
     private javax.swing.JSpinner SPrecioMedio;
     private javax.swing.JTextField THabitat;
     private javax.swing.JTextField TTipoComida;
-    private javax.swing.JToggleButton addAnimal;
+    private javax.swing.JToggleButton addCuidado;
     private javax.swing.JComboBox<String> jAnimal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

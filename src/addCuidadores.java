@@ -24,6 +24,7 @@ public class addCuidadores extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         capa0 = new javax.swing.JPanel();
         addCuidador = new javax.swing.JLabel();
@@ -40,36 +41,84 @@ public class addCuidadores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        capa0.setBackground(new java.awt.Color(102, 102, 102));
-        capa0.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        capa0.setBackground(new java.awt.Color(255, 255, 255));
+        capa0.setPreferredSize(new java.awt.Dimension(800, 600));
+        java.awt.GridBagLayout capa0Layout = new java.awt.GridBagLayout();
+        capa0Layout.columnWidths = new int[] {0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0};
+        capa0Layout.rowHeights = new int[] {0, 32, 0, 32, 0, 32, 0, 32, 0, 32, 0};
+        capa0.setLayout(capa0Layout);
 
         addCuidador.setBackground(new java.awt.Color(255, 255, 255));
         addCuidador.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        addCuidador.setForeground(new java.awt.Color(255, 255, 255));
+        addCuidador.setForeground(new java.awt.Color(51, 51, 51));
         addCuidador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addCuidador.setText("Añadir cuidador");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        capa0.add(addCuidador, gridBagConstraints);
 
         JLNombre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNombre.setForeground(new java.awt.Color(255, 255, 255));
+        JLNombre.setForeground(new java.awt.Color(51, 51, 51));
         JLNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNombre.setText("Nombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        capa0.add(JLNombre, gridBagConstraints);
+
+        jTFNombreCuidador.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        capa0.add(jTFNombreCuidador, gridBagConstraints);
 
         JLApellidos.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        JLApellidos.setForeground(new java.awt.Color(51, 51, 51));
         JLApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLApellidos.setText("Apellidos");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        capa0.add(JLApellidos, gridBagConstraints);
+
+        jTFApe.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        capa0.add(jTFApe, gridBagConstraints);
 
         JLEspecialidad.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
+        JLEspecialidad.setForeground(new java.awt.Color(51, 51, 51));
         JLEspecialidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLEspecialidad.setText("Especialidad");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        capa0.add(JLEspecialidad, gridBagConstraints);
+
+        jTFNumCuidador.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        capa0.add(jTFNumCuidador, gridBagConstraints);
 
         JLNum1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNum1.setForeground(new java.awt.Color(255, 255, 255));
+        JLNum1.setForeground(new java.awt.Color(51, 51, 51));
         JLNum1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNum1.setText("Nº Cuidador");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        capa0.add(JLNum1, gridBagConstraints);
 
         jComboBoxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEspecialidad.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        capa0.add(jComboBoxEspecialidad, gridBagConstraints);
 
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
         jButtonGuardar.setText("Añadir");
@@ -78,69 +127,27 @@ public class addCuidadores extends javax.swing.JFrame {
                 jButtonGuardarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        capa0.add(jButtonGuardar, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addCuidador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(capa0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jTFNombreCuidador, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLNum1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTFNumCuidador)
-                                .addComponent(jTFApe, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBoxEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(capa0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(addCuidador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(70, 70, 70)
                 .addComponent(capa0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFNombreCuidador, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JLApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFApe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jTFNumCuidador, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLNum1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jButtonGuardar)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

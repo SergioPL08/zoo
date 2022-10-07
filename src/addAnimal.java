@@ -1,6 +1,12 @@
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import zoo.Animal;
 
 /*
@@ -195,11 +201,31 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
     }//GEN-LAST:event_JButtonAddAnimalActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        
+        try{
+            FileOutputStream fos = new FileOutputStream("Animales.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(lista);
+            oos.close();
+            JOptionPane.showMessageDialog(null, "Archibo guardado correctamente");
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-        // TODO add your handling code here:
+        try{
+            FileInputStream fis = new FileInputStream("Animales.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            lista = (ArrayList<Animal>) ois.readObject();
+            JOptionPane.showMessageDialog(null, "Archivo cargado correctamente");
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "Erorr al cargar el fichero");
+        }
+        catch(ClassNotFoundException ex){
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+        }
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     /**
