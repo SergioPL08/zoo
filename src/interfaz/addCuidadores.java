@@ -1,3 +1,12 @@
+package interfaz;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import zoo.Cuidador;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,12 +17,13 @@
  * @author sergio
  */
 public class addCuidadores extends javax.swing.JFrame {
-
+    ArrayList <Cuidador> lista;
     /**
      * Creates new form addCuidadores
      */
     public addCuidadores() {
         initComponents();
+        lista = new ArrayList<Cuidador>();
     }
 
     /**
@@ -36,16 +46,17 @@ public class addCuidadores extends javax.swing.JFrame {
         jTFNumCuidador = new javax.swing.JTextField();
         JLNum1 = new javax.swing.JLabel();
         jComboBoxEspecialidad = new javax.swing.JComboBox<>();
-        jButtonGuardar = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonGuardarCuidadores = new javax.swing.JButton();
+        jButtonCargarCuidadores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         capa0.setBackground(new java.awt.Color(255, 255, 255));
         capa0.setPreferredSize(new java.awt.Dimension(800, 600));
         java.awt.GridBagLayout capa0Layout = new java.awt.GridBagLayout();
         capa0Layout.columnWidths = new int[] {0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0, 35, 0};
-        capa0Layout.rowHeights = new int[] {0, 32, 0, 32, 0, 32, 0, 32, 0, 32, 0};
+        capa0Layout.rowHeights = new int[] {0, 32, 0, 32, 0, 32, 0, 32, 0, 32, 0, 32, 0, 32, 0};
         capa0.setLayout(capa0Layout);
 
         addCuidador.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,18 +131,35 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         capa0.add(jComboBoxEspecialidad, gridBagConstraints);
 
-        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
-        jButtonGuardar.setText("Añadir");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        jButtonAdd.setText("Añadir");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                jButtonAddActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 3;
-        capa0.add(jButtonGuardar, gridBagConstraints);
+        capa0.add(jButtonAdd, gridBagConstraints);
+
+        jButtonGuardarCuidadores.setText("Guardar");
+        jButtonGuardarCuidadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarCuidadoresActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        capa0.add(jButtonGuardarCuidadores, gridBagConstraints);
+
+        jButtonCargarCuidadores.setText("Cargar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        capa0.add(jButtonCargarCuidadores, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,9 +181,20 @@ public class addCuidadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        
+    }
+        
+        
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonGuardarCuidadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCuidadoresActionPerformed
+        try{
+            util.util.guardar(lista, "Cuidadores.dat");
+        }catch (IOException ex){
+                JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
+        }
+    }//GEN-LAST:event_jButtonGuardarCuidadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,7 +238,9 @@ public class addCuidadores extends javax.swing.JFrame {
     private javax.swing.JLabel JLNum1;
     private javax.swing.JLabel addCuidador;
     private javax.swing.JPanel capa0;
-    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonCargarCuidadores;
+    private javax.swing.JButton jButtonGuardarCuidadores;
     private javax.swing.JComboBox<String> jComboBoxEspecialidad;
     private javax.swing.JTextField jTFApe;
     private javax.swing.JTextField jTFNombreCuidador;

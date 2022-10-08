@@ -1,3 +1,5 @@
+package interfaz;
+
 
 import javax.swing.JOptionPane;
 import zoo.*;
@@ -40,7 +42,6 @@ public class addEspecialidad extends javax.swing.JFrame {
         jButtonAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));

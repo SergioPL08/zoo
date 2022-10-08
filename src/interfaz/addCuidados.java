@@ -1,3 +1,5 @@
+package interfaz;
+
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -61,7 +63,8 @@ public class addCuidados extends javax.swing.JFrame {
         
         
         }
-    
+        
+    /*
         public void guardar(){
             try{
                 FileOutputStream fis = new FileOutputStream ("animales.dat");
@@ -76,6 +79,8 @@ public class addCuidados extends javax.swing.JFrame {
                 Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+    */
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

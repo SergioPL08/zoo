@@ -1,5 +1,8 @@
+package interfaz;
+
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,6 +11,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import zoo.Animal;
+import util.Lista;
+import util.util;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -57,7 +62,6 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 400));
@@ -202,11 +206,8 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         try{
-            FileOutputStream fos = new FileOutputStream("Animales.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(lista);
-            oos.close();
-            JOptionPane.showMessageDialog(null, "Archibo guardado correctamente");
+            util.guardar(lista,"Animales.dat");
+            JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
         }
         catch(IOException ex){
             JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
@@ -215,9 +216,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         try{
-            FileInputStream fis = new FileInputStream("Animales.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            lista = (ArrayList<Animal>) ois.readObject();
+            util.cargar(lista,"Animales.dat");
             JOptionPane.showMessageDialog(null, "Archivo cargado correctamente");
         }
         catch(IOException ex){
