@@ -10,11 +10,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.transform.OutputKeys;
 import zoo.*;
+import util.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -36,30 +38,31 @@ public class addCuidados extends javax.swing.JFrame {
     public addCuidados() {
         initComponents();
         animal = new ArrayList<Animal>();
-
+        rellenaAnimales();
     }
 
     public void rellenaAnimales(){
         try {
-            FileInputStream file = new FileInputStream ("Animales.dat");
-            ObjectInputStream inputFile = new ObjectInputStream(file);      
-            boolean finalFichero=false;
-            while(!finalFichero){
-                try{
-                    animal.add((Animal)inputFile.readObject());
-                    }catch(EOFException e){
-                        finalFichero = true;
-                    }           
-                    catch(Exception f){
-                        JOptionPane.showMessageDialog(null,f.getMessage());
-                    }
-            }
-            inputFile.close();
+                animal = util.cargar(animal, "Animales.dat");
+                Iterator iter = animal.iterator();
+                String [] listaAnimales = new String[animal.size()];
+                int i = 0;
+                while(iter.hasNext()){
+                    Animal a = (Animal)iter.next();
+                    listaAnimales[i]=a.getName();
+                    //System.out.println(listaAnimales[i]);
+                    i++;
+                }
+                //System.out.println(listaAnimales.length);
+                jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(listaAnimales));
+                
             }
             catch(IOException f){
-            JOptionPane.showMessageDialog(null,f.getMessage());
-
-        }
+                JOptionPane.showMessageDialog(null,f.getMessage());
+            }
+            catch (ClassNotFoundException ex) {
+                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         
         }
@@ -106,7 +109,7 @@ public class addCuidados extends javax.swing.JFrame {
         LCantidadComida1 = new javax.swing.JLabel();
         SCantidadComida1 = new javax.swing.JSpinner();
         LPeridiocidad1 = new javax.swing.JLabel();
-        jAnimal = new javax.swing.JComboBox<>();
+        jComboBoxjAnimal = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -228,11 +231,11 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints.gridy = 40;
         jPanel1.add(LPeridiocidad1, gridBagConstraints);
 
-        jAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 48;
-        jPanel1.add(jAnimal, gridBagConstraints);
+        jPanel1.add(jComboBoxjAnimal, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,7 +258,7 @@ public class addCuidados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TTipoComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TTipoComidaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_TTipoComidaActionPerformed
 
     private void addCuidadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCuidadoActionPerformed
@@ -264,6 +267,7 @@ public class addCuidados extends javax.swing.JFrame {
         float cantComida = (float) SCantidadComida1.getValue();
         float precioMedio = (float) SPrecioMedio.getValue();
         int periodicidad = (int) SPeriodicidad.getValue();
+        //Animal an.get = jComboBoxjAnimal.getSelectedIndex();
         if(tipoComida.equals("")){
             JOptionPane.showInputDialog(null, "Los animales no viven del aire, ¿sabes?");
         }
@@ -327,7 +331,7 @@ public class addCuidados extends javax.swing.JFrame {
     private javax.swing.JTextField THabitat;
     private javax.swing.JTextField TTipoComida;
     private javax.swing.JToggleButton addCuidado;
-    private javax.swing.JComboBox<String> jAnimal;
+    private javax.swing.JComboBox<String> jComboBoxjAnimal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

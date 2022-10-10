@@ -4,11 +4,13 @@
  */
 package zoo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sergio
  */
-public class Especialidad {
+public class Especialidad implements Serializable{
     private String nombreEspecialidad;
     private float salarioMedio;
     private float extraPeligrosidad;

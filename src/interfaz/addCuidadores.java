@@ -182,10 +182,7 @@ public class addCuidadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        
-    }
-        
-        
+    
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonGuardarCuidadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCuidadoresActionPerformed

@@ -4,11 +4,13 @@
  */
 package zoo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sergio
  */
-public class Cuidador {
+public class Cuidador implements Serializable{
     private String nombre;
     private int idCuidador;
     private String apellidos;

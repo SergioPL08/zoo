@@ -20,12 +20,11 @@ import zoo.Animal;
  * @author Sergio
  */
 public class util {
-    public static ArrayList guardar (ArrayList lista, String ruta) throws FileNotFoundException, IOException{
-            FileOutputStream fos = new FileOutputStream(ruta);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(lista);
-            oos.close();
-            return lista;
+    public static void guardar (ArrayList lista, String ruta) throws IOException{
+        FileOutputStream fos = new FileOutputStream(ruta);
+        ObjectOutputStream write = new ObjectOutputStream(fos);
+        write.writeObject(lista);
+        write.close();
     }
     
     public static ArrayList cargar (ArrayList lista,String ruta) throws IOException, ClassNotFoundException{

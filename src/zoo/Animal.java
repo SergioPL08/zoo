@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author sergio
  */
-public class Animal {
+public class Animal implements Serializable{
     private String name, especie, subespecie;
     private float peso;
 
@@ -19,7 +19,11 @@ public class Animal {
         this.subespecie = subespecie;
         this.peso = peso;
     }
-
+    
+    public String toString(){
+        return "Nombre: "+this.name+"\nEspecie:"+this.especie+"\nSubespecie:"+this.subespecie+"\nPeso:"+this.peso;
+    }
+    
     public String getName() {
         return name;
     }

@@ -200,8 +200,28 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         String subespecie = TSubespecie.getText();
         float peso = (float) SPesoAnimal.getValue();
         //(String name, String especie, String subespecie, float peso)
-        Animal animal = new Animal(nombre,especie,subespecie,peso);
-        lista.add(animal);
+        if(nombre.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduce el nombre del animal");
+        }
+        else if(especie.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduce la especie del animal");
+        }
+        else if(subespecie.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduce la subespecie del animal");
+        }
+        else if(peso==0){
+            JOptionPane.showMessageDialog(null, "El peso no puede ser 0");
+        }
+        else{
+            Animal animal = new Animal(nombre,especie,subespecie,peso);
+            lista.add(animal);
+            System.out.println(lista);
+            JOptionPane.showMessageDialog(null, "Animal añadido correctamente");
+            TNombreAnimal.setText("");
+            TEspecie.setText("");
+            TSubespecie.setText("");
+            SPesoAnimal.setValue(0);
+        }
     }//GEN-LAST:event_JButtonAddAnimalActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
