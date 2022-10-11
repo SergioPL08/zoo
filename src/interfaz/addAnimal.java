@@ -57,7 +57,6 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         SPesoAnimal = new javax.swing.JSpinner();
         JButtonAddAnimal = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonGuardar = new javax.swing.JButton();
         jButtonCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,7 +70,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.setLayout(jPanel2Layout);
 
         LnombreAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LnombreAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LnombreAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LnombreAnimal.setText("Nombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -79,7 +78,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.add(LnombreAnimal, gridBagConstraints);
 
         LespecieAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LespecieAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LespecieAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LespecieAnimal.setText("Especie");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -87,7 +86,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.add(LespecieAnimal, gridBagConstraints);
 
         LsubespecieAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LsubespecieAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LsubespecieAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LsubespecieAnimal.setText("Subespecie");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -95,7 +94,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.add(LsubespecieAnimal, gridBagConstraints);
 
         LpesoAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LpesoAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LpesoAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LpesoAnimal.setText("Peso");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -121,13 +120,14 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.add(TSubespecie, gridBagConstraints);
 
         SPesoAnimal.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        SPesoAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         SPesoAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         jPanel2.add(SPesoAnimal, gridBagConstraints);
 
-        JButtonAddAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        JButtonAddAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         JButtonAddAnimal.setText("Añadir");
         JButtonAddAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,10 +137,9 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
         jPanel2.add(JButtonAddAnimal, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Añadir animal");
@@ -152,17 +151,6 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        jPanel2.add(jButtonGuardar, gridBagConstraints);
-
         jButtonCargar.setText("Cargar");
         jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +159,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 10;
         jPanel2.add(jButtonCargar, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,18 +209,14 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
             TEspecie.setText("");
             TSubespecie.setText("");
             SPesoAnimal.setValue(0);
+            try{
+                util.guardar(lista,"Animales.dat");
+            }
+            catch(IOException ex){
+                JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
+            }
         }
     }//GEN-LAST:event_JButtonAddAnimalActionPerformed
-
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        try{
-            util.guardar(lista,"Animales.dat");
-            JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
-        }
-        catch(IOException ex){
-            JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
-        }
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         try{
@@ -294,7 +278,6 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
     private javax.swing.JTextField TNombreAnimal;
     private javax.swing.JTextField TSubespecie;
     private javax.swing.JButton jButtonCargar;
-    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

@@ -29,61 +29,31 @@ import util.*;
  */
 public class addCuidados extends javax.swing.JFrame {
 
-    ArrayList<Animal> animal;
-
+    ArrayList<Animal> animales;
+    ArrayList<Cuidados> cuidados;
     
     /**
      * Creates new form addCuid
      */
     public addCuidados() {
         initComponents();
-        animal = new ArrayList<Animal>();
-        rellenaAnimales();
-    }
-
-    public void rellenaAnimales(){
-        try {
-                animal = util.cargar(animal, "Animales.dat");
-                Iterator iter = animal.iterator();
-                String [] listaAnimales = new String[animal.size()];
-                int i = 0;
-                while(iter.hasNext()){
-                    Animal a = (Animal)iter.next();
-                    listaAnimales[i]=a.getName();
-                    //System.out.println(listaAnimales[i]);
-                    i++;
-                }
-                //System.out.println(listaAnimales.length);
-                jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(listaAnimales));
-                
-            }
-            catch(IOException f){
+        animales = new ArrayList<Animal>();
+        cuidados = new ArrayList<Cuidados>();
+        try{
+            animales = util.cargar(animales, "Animales.dat");
+            String [] listaAnimales = new String[animales.size()];
+            listaAnimales = util.rellenator(animales,"Animales.dat");
+            jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel(listaAnimales));
+        }
+        catch(IOException f){
                 JOptionPane.showMessageDialog(null,f.getMessage());
             }
             catch (ClassNotFoundException ex) {
                 Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        
-        }
-        
-    /*
-        public void guardar(){
-            try{
-                FileOutputStream fis = new FileOutputStream ("animales.dat");
-                ObjectOutputStream os = new ObjectOutputStream(fis);
-                for(int i=0; i<animal.size();i++){
-                    os.writeObject(animal.get(i));
-                }
-                os.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-    */
-    
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,12 +86,12 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWidths = new int[] {0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0};
+        jPanel1Layout.columnWidths = new int[] {0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0};
         jPanel1Layout.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
         jPanel1.setLayout(jPanel1Layout);
 
         LTipoComida.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LTipoComida.setForeground(new java.awt.Color(51, 51, 51));
+        LTipoComida.setForeground(new java.awt.Color(0, 153, 51));
         LTipoComida.setText("Tipo Comida");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -129,7 +99,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(LTipoComida, gridBagConstraints);
 
         LHabitat.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LHabitat.setForeground(new java.awt.Color(51, 51, 51));
+        LHabitat.setForeground(new java.awt.Color(0, 153, 51));
         LHabitat.setText("Habitat");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -137,7 +107,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(LHabitat, gridBagConstraints);
 
         LsubespecieAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LsubespecieAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LsubespecieAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LsubespecieAnimal.setText("Precio Medio");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -145,7 +115,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(LsubespecieAnimal, gridBagConstraints);
 
         LAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LAnimal.setForeground(new java.awt.Color(51, 51, 51));
+        LAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LAnimal.setText("Animal");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -176,7 +146,7 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints.gridy = 24;
         jPanel1.add(SPrecioMedio, gridBagConstraints);
 
-        addCuidado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        addCuidado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         addCuidado.setText("Añadir");
         addCuidado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,10 +156,10 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 52;
-        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.gridwidth = 13;
         jPanel1.add(addCuidado, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Añadir cuidado");
@@ -209,7 +179,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(SPeriodicidad, gridBagConstraints);
 
         LCantidadComida1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LCantidadComida1.setForeground(new java.awt.Color(51, 51, 51));
+        LCantidadComida1.setForeground(new java.awt.Color(0, 153, 51));
         LCantidadComida1.setText("Cantidad Comida (kg)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -224,7 +194,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(SCantidadComida1, gridBagConstraints);
 
         LPeridiocidad1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LPeridiocidad1.setForeground(new java.awt.Color(51, 51, 51));
+        LPeridiocidad1.setForeground(new java.awt.Color(0, 153, 51));
         LPeridiocidad1.setText("Periodicidad Comida (veces al día)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -267,16 +237,33 @@ public class addCuidados extends javax.swing.JFrame {
         float cantComida = (float) SCantidadComida1.getValue();
         float precioMedio = (float) SPrecioMedio.getValue();
         int periodicidad = (int) SPeriodicidad.getValue();
-        //Animal an.get = jComboBoxjAnimal.getSelectedIndex();
+        Animal animal = animales.get(jComboBoxjAnimal.getSelectedIndex());
         if(tipoComida.equals("")){
-            JOptionPane.showInputDialog(null, "Los animales no viven del aire, ¿sabes?");
+            JOptionPane.showMessageDialog(null, "Introduce el tipo de comida");
         }
         else if(habitat.equals("")){
-            JOptionPane.showInputDialog(null,"Los animales viven no viven en el espacio");
+            JOptionPane.showMessageDialog(null,"Introduce el habitat");
+        }
+        else if(cantComida==0){
+            JOptionPane.showMessageDialog(null,"La cantidad de comida no puede ser 0");
+        }
+        else if(precioMedio==0){
+            JOptionPane.showMessageDialog(null,"El precio no puede ser 0");
         }
         else{
             //(String tipoComida, String habitat, float costePromedio, float cantidadComidaKG, int periodicidadComidaDias)
-            Cuidados cuidado = new Cuidados(tipoComida, habitat, precioMedio, cantComida, periodicidad);
+            Cuidados cuidado = new Cuidados(tipoComida, habitat, precioMedio, cantComida, periodicidad, animal);
+            TTipoComida.setText("");
+            SCantidadComida1.setValue(0);
+            SPrecioMedio.setValue(0);
+            SPeriodicidad.setValue(0);
+            cuidados.add(cuidado);
+            JOptionPane.showMessageDialog(null,"Cuidado añadido correctamente");
+            try {
+                util.guardar(cuidados, "Cuidados.dat");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar el fichero");            
+            }
         }
             
         

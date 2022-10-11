@@ -12,11 +12,11 @@ import java.io.Serializable;
  */
 public class Cuidador implements Serializable{
     private String nombre;
-    private int idCuidador;
     private String apellidos;
+    private int idCuidador;
     private Especialidad especialidad;
 
-    public Cuidador(String nombre, int idCuidador, String apellidos, Especialidad especialidad) {
+    public Cuidador(String nombre, String apellidos, int idCuidador, Especialidad especialidad) {
         this.nombre = nombre;
         this.idCuidador = idCuidador;
         this.apellidos = apellidos;

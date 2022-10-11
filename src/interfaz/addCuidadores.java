@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import util.util;
+import zoo.Especialidad;
 import zoo.Cuidador;
 
 /*
@@ -17,15 +20,27 @@ import zoo.Cuidador;
  * @author sergio
  */
 public class addCuidadores extends javax.swing.JFrame {
-    ArrayList <Cuidador> lista;
+    ArrayList<Especialidad> especialidades;
     /**
-     * Creates new form addCuidadores
+     * Creates new form addEspecialidad
      */
     public addCuidadores() {
         initComponents();
-        lista = new ArrayList<Cuidador>();
+        especialidades = new ArrayList<Especialidad>();
+        try{
+            especialidades = util.cargar(especialidades, "Especialidades.dat");
+            String [] listaEspecialidades = new String[especialidades.size()];
+            listaEspecialidades = util.rellenator(especialidades,"Especialidades.dat");
+            jComboBoxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel(listaEspecialidades));
+        }
+        catch(IOException f){
+                JOptionPane.showMessageDialog(null,f.getMessage());
+            }
+            catch (ClassNotFoundException ex) {
+                Logger.getLogger(addCuidados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,12 +58,11 @@ public class addCuidadores extends javax.swing.JFrame {
         JLApellidos = new javax.swing.JLabel();
         jTFApe = new javax.swing.JTextField();
         JLEspecialidad = new javax.swing.JLabel();
-        jTFNumCuidador = new javax.swing.JTextField();
         JLNum1 = new javax.swing.JLabel();
         jComboBoxEspecialidad = new javax.swing.JComboBox<>();
         jButtonAdd = new javax.swing.JButton();
-        jButtonGuardarCuidadores = new javax.swing.JButton();
         jButtonCargarCuidadores = new javax.swing.JButton();
+        jSpinnerNumCuidador = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +74,7 @@ public class addCuidadores extends javax.swing.JFrame {
         capa0.setLayout(capa0Layout);
 
         addCuidador.setBackground(new java.awt.Color(255, 255, 255));
-        addCuidador.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        addCuidador.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         addCuidador.setForeground(new java.awt.Color(51, 51, 51));
         addCuidador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addCuidador.setText("Añadir cuidador");
@@ -70,8 +84,8 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         capa0.add(addCuidador, gridBagConstraints);
 
-        JLNombre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNombre.setForeground(new java.awt.Color(51, 51, 51));
+        JLNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JLNombre.setForeground(new java.awt.Color(0, 153, 51));
         JLNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNombre.setText("Nombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -85,8 +99,8 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         capa0.add(jTFNombreCuidador, gridBagConstraints);
 
-        JLApellidos.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLApellidos.setForeground(new java.awt.Color(51, 51, 51));
+        JLApellidos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JLApellidos.setForeground(new java.awt.Color(0, 153, 51));
         JLApellidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLApellidos.setText("Apellidos");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -100,8 +114,8 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         capa0.add(jTFApe, gridBagConstraints);
 
-        JLEspecialidad.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLEspecialidad.setForeground(new java.awt.Color(51, 51, 51));
+        JLEspecialidad.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JLEspecialidad.setForeground(new java.awt.Color(0, 153, 51));
         JLEspecialidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLEspecialidad.setText("Especialidad");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -109,14 +123,8 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         capa0.add(JLEspecialidad, gridBagConstraints);
 
-        jTFNumCuidador.setPreferredSize(new java.awt.Dimension(100, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        capa0.add(jTFNumCuidador, gridBagConstraints);
-
-        JLNum1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        JLNum1.setForeground(new java.awt.Color(51, 51, 51));
+        JLNum1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        JLNum1.setForeground(new java.awt.Color(0, 153, 51));
         JLNum1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JLNum1.setText("Nº Cuidador");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -131,7 +139,7 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         capa0.add(jComboBoxEspecialidad, gridBagConstraints);
 
-        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/14_Add-512.png"))); // NOI18N
+        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         jButtonAdd.setText("Añadir");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,25 +149,25 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
         capa0.add(jButtonAdd, gridBagConstraints);
 
-        jButtonGuardarCuidadores.setText("Guardar");
-        jButtonGuardarCuidadores.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCargarCuidadores.setText("Cargar");
+        jButtonCargarCuidadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarCuidadoresActionPerformed(evt);
+                jButtonCargarCuidadoresActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        capa0.add(jButtonGuardarCuidadores, gridBagConstraints);
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        capa0.add(jButtonCargarCuidadores, gridBagConstraints);
 
-        jButtonCargarCuidadores.setText("Cargar");
+        jSpinnerNumCuidador.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jSpinnerNumCuidador.setPreferredSize(new java.awt.Dimension(100, 26));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
-        capa0.add(jButtonCargarCuidadores, gridBagConstraints);
+        gridBagConstraints.gridy = 6;
+        capa0.add(jSpinnerNumCuidador, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,16 +190,34 @@ public class addCuidadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-    
+        String nombre = JLNombre.getText();
+        String ape = JLApellidos.getText();
+        int num = (int)jSpinnerNumCuidador.getValue();
+        Especialidad esp = especialidades.get(jComboBoxEspecialidad.getSelectedIndex());
+        if(nombre.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduce el nombre");
+        }
+        else if(ape.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduce el apellido");
+        }
+        else if(num==0){
+            JOptionPane.showMessageDialog(null, "Introduce el nombre");
+        }
+        else{
+            Cuidador cuidador = new Cuidador(nombre,ape,num,esp);
+            JOptionPane.showMessageDialog(null,"Cuidado añadido correctamente");
+            try {
+                util.guardar(especialidades, "Cuidadores.dat");
+                JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");            
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar el fichero");            
+            }
+        }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
-    private void jButtonGuardarCuidadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCuidadoresActionPerformed
-        try{
-            util.util.guardar(lista, "Cuidadores.dat");
-        }catch (IOException ex){
-                JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
-        }
-    }//GEN-LAST:event_jButtonGuardarCuidadoresActionPerformed
+    private void jButtonCargarCuidadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarCuidadoresActionPerformed
+        
+    }//GEN-LAST:event_jButtonCargarCuidadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,10 +263,9 @@ public class addCuidadores extends javax.swing.JFrame {
     private javax.swing.JPanel capa0;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonCargarCuidadores;
-    private javax.swing.JButton jButtonGuardarCuidadores;
     private javax.swing.JComboBox<String> jComboBoxEspecialidad;
+    private javax.swing.JSpinner jSpinnerNumCuidador;
     private javax.swing.JTextField jTFApe;
     private javax.swing.JTextField jTFNombreCuidador;
-    private javax.swing.JTextField jTFNumCuidador;
     // End of variables declaration//GEN-END:variables
 }

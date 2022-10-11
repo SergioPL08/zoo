@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import util.Lista;
 import zoo.Animal;
@@ -26,7 +27,19 @@ public class util {
         write.writeObject(lista);
         write.close();
     }
-    
+    public static String[] rellenator(ArrayList lista, String ruta) throws IOException, ClassNotFoundException {
+        lista = util.cargar(lista, ruta);
+                Iterator iter = lista.iterator();
+                String [] listados = new String[lista.size()];
+                int i = 0;
+                while(iter.hasNext()){
+                    Animal a = (Animal)iter.next();
+                    listados[i]=a.getName();
+                    //System.out.println(listaAnimales[i]);
+                    i++;
+                }
+        return listados;
+    }
     public static ArrayList cargar (ArrayList lista,String ruta) throws IOException, ClassNotFoundException{
         FileInputStream fis = new FileInputStream(ruta);
         ObjectInputStream ois = new ObjectInputStream(fis);

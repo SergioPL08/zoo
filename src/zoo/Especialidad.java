@@ -14,11 +14,13 @@ public class Especialidad implements Serializable{
     private String nombreEspecialidad;
     private float salarioMedio;
     private float extraPeligrosidad;
-
-    public Especialidad(String nombreEspecialidad, float salarioMedio, float extraPeligrosidad) {
+    private Animal animal;
+    
+    public Especialidad(String nombreEspecialidad, float salarioMedio, float extraPeligrosidad, Animal animal) {
         this.nombreEspecialidad = nombreEspecialidad;
         this.salarioMedio = salarioMedio;
         this.extraPeligrosidad = extraPeligrosidad;
+        this.animal= animal;
     }
 
     public String getNombreEspecialidad() {

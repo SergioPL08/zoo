@@ -16,19 +16,8 @@ public class Cuidados implements Serializable{
     private float costePromedio;
     private float cantidadComidaKG;
     private int periodicidadComidaDias;
-    //private final Animal animal;
+    private final Animal animal;
 
-    public Cuidados(String tipoComida, String habitat, float costePromedio, float cantidadComidaKG, int periodicidadComidaDias) {
-        this.tipoComida = tipoComida;
-        this.habitat = habitat;
-        this.costePromedio = costePromedio;
-        this.cantidadComidaKG = cantidadComidaKG;
-        this.periodicidadComidaDias = periodicidadComidaDias;
-    }
-
-    
-    /*
-    
     public Cuidados(String tipoComida, String habitat, float costePromedio, float cantidadComidaKG, int periodicidadComidaDias, Animal animal) {
         this.tipoComida = tipoComida;
         this.habitat = habitat;
@@ -37,7 +26,7 @@ public class Cuidados implements Serializable{
         this.periodicidadComidaDias = periodicidadComidaDias;
         this.animal = animal;
     }
-    */
+    
     public String getTipoComida() {
         return tipoComida;
     }
