@@ -93,6 +93,9 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         capa0.add(JLNombre, gridBagConstraints);
 
+        jTFNombreCuidador.setBackground(new java.awt.Color(255, 255, 255));
+        jTFNombreCuidador.setForeground(new java.awt.Color(0, 0, 0));
+        jTFNombreCuidador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jTFNombreCuidador.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -108,6 +111,9 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         capa0.add(JLApellidos, gridBagConstraints);
 
+        jTFApe.setBackground(new java.awt.Color(255, 255, 255));
+        jTFApe.setForeground(new java.awt.Color(0, 0, 0));
+        jTFApe.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jTFApe.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -139,8 +145,10 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         capa0.add(jComboBoxEspecialidad, gridBagConstraints);
 
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         jButtonAdd.setText("Añadir");
+        jButtonAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);
@@ -151,6 +159,7 @@ public class addCuidadores extends javax.swing.JFrame {
         gridBagConstraints.gridy = 10;
         capa0.add(jButtonAdd, gridBagConstraints);
 
+        jButtonCargarCuidadores.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCargarCuidadores.setText("Cargar");
         jButtonCargarCuidadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +172,7 @@ public class addCuidadores extends javax.swing.JFrame {
         capa0.add(jButtonCargarCuidadores, gridBagConstraints);
 
         jSpinnerNumCuidador.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jSpinnerNumCuidador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jSpinnerNumCuidador.setPreferredSize(new java.awt.Dimension(100, 26));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;

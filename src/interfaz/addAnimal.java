@@ -101,18 +101,27 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.gridy = 8;
         jPanel2.add(LpesoAnimal, gridBagConstraints);
 
+        TNombreAnimal.setBackground(new java.awt.Color(255, 255, 255));
+        TNombreAnimal.setForeground(new java.awt.Color(0, 0, 0));
+        TNombreAnimal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
         TNombreAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         jPanel2.add(TNombreAnimal, gridBagConstraints);
 
+        TEspecie.setBackground(new java.awt.Color(255, 255, 255));
+        TEspecie.setForeground(new java.awt.Color(0, 0, 0));
+        TEspecie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
         TEspecie.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         jPanel2.add(TEspecie, gridBagConstraints);
 
+        TSubespecie.setBackground(new java.awt.Color(255, 255, 255));
+        TSubespecie.setForeground(new java.awt.Color(0, 0, 0));
+        TSubespecie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
         TSubespecie.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -120,6 +129,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2.add(TSubespecie, gridBagConstraints);
 
         SPesoAnimal.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        SPesoAnimal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
         SPesoAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         SPesoAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -127,8 +137,11 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.gridy = 8;
         jPanel2.add(SPesoAnimal, gridBagConstraints);
 
+        JButtonAddAnimal.setBackground(new java.awt.Color(255, 255, 255));
+        JButtonAddAnimal.setForeground(new java.awt.Color(255, 255, 255));
         JButtonAddAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         JButtonAddAnimal.setText("Añadir");
+        JButtonAddAnimal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         JButtonAddAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonAddAnimalActionPerformed(evt);
@@ -151,6 +164,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel2.add(jLabel1, gridBagConstraints);
 
+        jButtonCargar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCargar.setText("Cargar");
         jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

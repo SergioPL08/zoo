@@ -5,12 +5,11 @@
 package util;
 
 import java.util.ArrayList;
-import zoo.Animal;
 
 /**
  *
  * @author Sergio
  */
 public class Lista {
-    ArrayList lista = new ArrayList<Animal>();
+    public static ArrayList lista;
 }

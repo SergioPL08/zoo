@@ -122,6 +122,9 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints.gridy = 48;
         jPanel1.add(LAnimal, gridBagConstraints);
 
+        TTipoComida.setBackground(new java.awt.Color(255, 255, 255));
+        TTipoComida.setForeground(new java.awt.Color(0, 0, 0));
+        TTipoComida.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         TTipoComida.setPreferredSize(new java.awt.Dimension(100, 24));
         TTipoComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +136,9 @@ public class addCuidados extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         jPanel1.add(TTipoComida, gridBagConstraints);
 
+        THabitat.setBackground(new java.awt.Color(255, 255, 255));
+        THabitat.setForeground(new java.awt.Color(0, 0, 0));
+        THabitat.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         THabitat.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
@@ -140,14 +146,17 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(THabitat, gridBagConstraints);
 
         SPrecioMedio.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        SPrecioMedio.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         SPrecioMedio.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 24;
         jPanel1.add(SPrecioMedio, gridBagConstraints);
 
+        addCuidado.setForeground(new java.awt.Color(255, 255, 255));
         addCuidado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         addCuidado.setText("Añadir");
+        addCuidado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         addCuidado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addCuidadoActionPerformed(evt);
@@ -172,6 +181,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         SPeriodicidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        SPeriodicidad.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         SPeriodicidad.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
@@ -187,6 +197,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(LCantidadComida1, gridBagConstraints);
 
         SCantidadComida1.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        SCantidadComida1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         SCantidadComida1.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
@@ -202,6 +213,7 @@ public class addCuidados extends javax.swing.JFrame {
         jPanel1.add(LPeridiocidad1, gridBagConstraints);
 
         jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxjAnimal.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 48;

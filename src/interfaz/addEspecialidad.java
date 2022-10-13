@@ -92,6 +92,8 @@ public class addEspecialidad extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         jPanel1.add(JLSalarioMedio, gridBagConstraints);
 
+        jTFNombreEsp.setBackground(new java.awt.Color(255, 255, 255));
+        jTFNombreEsp.setForeground(new java.awt.Color(0, 0, 0));
         jTFNombreEsp.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -130,8 +132,10 @@ public class addEspecialidad extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         jPanel1.add(jSpinnerNPeligrosidad, gridBagConstraints);
 
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         jButtonAdd.setText("Añadir");
+        jButtonAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);

@@ -3,25 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Login;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.util;
 import zoo.User;
+
 /**
  *
- * @author sergio
+ * @author Sergio
  */
-public class PanelLogin extends javax.swing.JFrame {
+public class Register extends javax.swing.JFrame {
     ArrayList users;
     /**
-     * Creates new form PanelLogin
+     * Creates new form Register
      */
-    public PanelLogin() {
+    public Register() {
         initComponents();
         users = new ArrayList();
         try{
@@ -48,6 +48,7 @@ public class PanelLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButtonRegister = new javax.swing.JButton();
         jLabelLogo = new javax.swing.JLabel();
         jLabelIniciarSesion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -55,22 +56,32 @@ public class PanelLogin extends javax.swing.JFrame {
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelPass = new javax.swing.JLabel();
         jTextFieldPass = new javax.swing.JTextField();
+        jLabelNombre1 = new javax.swing.JLabel();
+        jTextFieldConfirmPass = new javax.swing.JTextField();
         jLabelCarpincho = new javax.swing.JLabel();
-        jButtonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(2063, 700));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonRegister.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButtonRegister.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRegister.setText("Registrar");
+        jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegisterActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, -1, -1));
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo2.png"))); // NOI18N
         jPanel1.add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabelIniciarSesion.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelIniciarSesion.setForeground(new java.awt.Color(51, 51, 51));
-        jLabelIniciarSesion.setText("Iniciar sesión");
+        jLabelIniciarSesion.setText("Registrar");
         jPanel1.add(jLabelIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -101,20 +112,22 @@ public class PanelLogin extends javax.swing.JFrame {
         jTextFieldPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
         jPanel2.add(jTextFieldPass);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 360, -1));
+        jLabelNombre1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelNombre1.setForeground(new java.awt.Color(0, 153, 51));
+        jLabelNombre1.setText("Confirmar");
+        jPanel2.add(jLabelNombre1);
+
+        jTextFieldConfirmPass.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldConfirmPass.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jTextFieldConfirmPass.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldConfirmPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 36), new java.awt.Color(0, 153, 51))); // NOI18N
+        jTextFieldConfirmPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
+        jPanel2.add(jTextFieldConfirmPass);
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 410, -1));
 
         jLabelCarpincho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carpincho.jpg"))); // NOI18N
         jPanel1.add(jLabelCarpincho, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, -1, -1));
-
-        jButtonLogin.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLogin.setText("Iniciar sesión");
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,21 +135,22 @@ public class PanelLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 863, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 180, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+    private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         String nombre = jTextFieldNombre.getText().trim();
         String pass = jTextFieldPass.getText().trim();
+        String confirm = jTextFieldConfirmPass.getText().trim();
         if(nombre.equals("")){
             JOptionPane.showMessageDialog(null, "Introduce el nombre");
         } 
@@ -145,18 +159,25 @@ public class PanelLogin extends javax.swing.JFrame {
         }
         else{
             User user = new User(nombre,pass);
-            if(users.indexOf(user)!=0){
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            if(users.indexOf(user)!=-1){
+                JOptionPane.showMessageDialog(null, "El usuario ya existe");
             }
             else{
                 users.add(user);
-                JOptionPane.showMessageDialog(null, "Usuario correcto");
+                JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
                 jTextFieldNombre.setText("");
                 jTextFieldPass.setText("");
+                jTextFieldConfirmPass.setText("");
+                try{
+                    util.guardar(users,"Users.dat");
+                }
+                catch(IOException ex){
+                    //JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
+                }
             }
         }
         
-    }//GEN-LAST:event_jButtonLoginActionPerformed
+    }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,33 +196,35 @@ public class PanelLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelLogin().setVisible(true);
+                new Register().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabelCarpincho;
     private javax.swing.JLabel jLabelIniciarSesion;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelNombre1;
     private javax.swing.JLabel jLabelPass;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldConfirmPass;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPass;
     // End of variables declaration//GEN-END:variables

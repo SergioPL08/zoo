@@ -43,7 +43,8 @@ public class util {
     public static ArrayList cargar (ArrayList lista,String ruta) throws IOException, ClassNotFoundException{
         FileInputStream fis = new FileInputStream(ruta);
         ObjectInputStream ois = new ObjectInputStream(fis);
-        lista = (ArrayList<Animal>) ois.readObject();
+        lista = (ArrayList) ois.readObject();
+        ois.close();
         return lista;
     }
     
