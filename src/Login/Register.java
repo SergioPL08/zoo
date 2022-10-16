@@ -58,12 +58,11 @@ public class Register extends javax.swing.JFrame {
         jTextFieldPass = new javax.swing.JTextField();
         jLabelNombre1 = new javax.swing.JLabel();
         jTextFieldConfirmPass = new javax.swing.JTextField();
-        jLabelCarpincho = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 700));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonRegister.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -74,7 +73,7 @@ public class Register extends javax.swing.JFrame {
                 jButtonRegisterActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, -1, -1));
+        jPanel1.add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, -1, -1));
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo2.png"))); // NOI18N
         jPanel1.add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
@@ -124,10 +123,7 @@ public class Register extends javax.swing.JFrame {
         jTextFieldConfirmPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
         jPanel2.add(jTextFieldConfirmPass);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 410, -1));
-
-        jLabelCarpincho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carpincho.jpg"))); // NOI18N
-        jPanel1.add(jLabelCarpincho, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 370, 340));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,7 +212,6 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegister;
-    private javax.swing.JLabel jLabelCarpincho;
     private javax.swing.JLabel jLabelIniciarSesion;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelNombre;

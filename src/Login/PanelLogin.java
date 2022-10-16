@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.util;
 import zoo.User;
+import interfaz.*;
+import java.awt.Color;
 /**
  *
  * @author sergio
@@ -57,6 +59,7 @@ public class PanelLogin extends javax.swing.JFrame {
         jTextFieldPass = new javax.swing.JTextField();
         jLabelCarpincho = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
+        jLabelCrearCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(2063, 700));
@@ -116,6 +119,18 @@ public class PanelLogin extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, -1, -1));
 
+        jLabelCrearCuenta.setForeground(new java.awt.Color(0, 153, 51));
+        jLabelCrearCuenta.setText("Crear cuenta");
+        jLabelCrearCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearCuenta(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelCrearCuentaMousePressed(evt);
+            }
+        });
+        jPanel1.add(jLabelCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 580, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,6 +173,16 @@ public class PanelLogin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
+    private void crearCuenta(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearCuenta
+        Login.Register r = new Login.Register();
+        r.setVisible(true);
+        jLabelCrearCuenta.setForeground(Color.decode("#009933"));
+    }//GEN-LAST:event_crearCuenta
+
+    private void jLabelCrearCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCrearCuentaMousePressed
+        jLabelCrearCuenta.setForeground(Color.decode("#FF6666"));
+    }//GEN-LAST:event_jLabelCrearCuentaMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +221,7 @@ public class PanelLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabelCarpincho;
+    private javax.swing.JLabel jLabelCrearCuenta;
     private javax.swing.JLabel jLabelIniciarSesion;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelNombre;
