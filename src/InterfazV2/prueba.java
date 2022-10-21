@@ -14,19 +14,18 @@ import javax.swing.table.DefaultTableModel;
 import util.Conexion;
 import zoo.Animal;
 import util.utilities;
-
 /**
  *
  * @author Sergio
  */
-public class AnimalTable extends javax.swing.JFrame {
+public class prueba extends javax.swing.JFrame {
     ArrayList<Animal> animales;
     DefaultTableModel modelo;
     Conexion miConexion;
     /**
      * Creates new form AnimalTable
      */
-    public AnimalTable() {
+    public prueba() {
         initComponents();
         animales = new ArrayList<Animal>();
         modelo = (DefaultTableModel) jTable1.getModel();
@@ -124,33 +123,9 @@ public class AnimalTable extends javax.swing.JFrame {
         try{
             String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
             Connection conDB = (Connection) miConexion.makeConnect();
-            try(Statement st=conDB.createStatement()){
-                
-            }
-            }catch (SQLException sqle) { 
-                System.out.println("Error en la ejecución:");    
-            }
+            
             //ResultSet rs = st
             
-            
-            
-            miConexion.closeConnect((java.sql.Connection) conDB);
-            
-            
-            String [] listaAnimales = new String[animales.size()];
-            listaAnimales = utilities.rellenator(animales,"Animales.dat");
-            Iterator iter = animales.iterator();
-            while(iter.hasNext()){
-                Animal a = (Animal) iter.next();
-                modelo.addRow(new Object[] {a.getName(),a.getEspecie(),a.getPeso()});
-            }
-        }
-        catch(IOException ex){
-            JOptionPane.showMessageDialog(null,ex.getMessage());
-        }
-        catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage());
-        }
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     /**
@@ -170,13 +145,13 @@ public class AnimalTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AnimalTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AnimalTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AnimalTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AnimalTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -184,7 +159,7 @@ public class AnimalTable extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AnimalTable().setVisible(true);
+                new prueba().setVisible(true);
             }
         });
     }
