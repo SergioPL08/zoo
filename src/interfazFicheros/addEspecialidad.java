@@ -1,4 +1,4 @@
-package interfaz;
+package interfazFicheros;
 
 
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import util.util;
+import util.utilities;
 import zoo.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -28,9 +28,9 @@ public class addEspecialidad extends javax.swing.JFrame {
         lista = new ArrayList<Animal>();
         especialidades = new ArrayList<Especialidad>(); 
         try{
-            lista = util.cargar(lista, "Animales.dat");
+            lista = utilities.cargar(lista, "Animales.dat");
             String [] listaAnimales = new String[lista.size()];
-            listaAnimales = util.rellenator(lista,"Animales.dat");
+            listaAnimales = utilities.rellenator(lista,"Animales.dat");
             jComboBoxAnimales.setModel(new javax.swing.DefaultComboBoxModel(listaAnimales));
         }
         catch(IOException f){
@@ -198,7 +198,7 @@ public class addEspecialidad extends javax.swing.JFrame {
             especialidades.add(esp);
             JOptionPane.showMessageDialog(null, "Especialidad añadida correctamente");
             try{
-                util.guardar(especialidades,"Especialidades.dat");
+                utilities.guardar(especialidades,"Especialidades.dat");
             }
             catch(IOException ex){
                 JOptionPane.showMessageDialog(null, "Error al guardar el fichero");

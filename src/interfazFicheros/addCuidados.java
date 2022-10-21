@@ -1,4 +1,4 @@
-package interfaz;
+package interfazFicheros;
 
 
 import java.io.EOFException;
@@ -40,9 +40,9 @@ public class addCuidados extends javax.swing.JFrame {
         animales = new ArrayList<Animal>();
         cuidados = new ArrayList<Cuidados>();
         try{
-            animales = util.cargar(animales, "Animales.dat");
+            animales = utilities.cargar(animales, "Animales.dat");
             String [] listaAnimales = new String[animales.size()];
-            listaAnimales = util.rellenator(animales,"Animales.dat");
+            listaAnimales = utilities.rellenator(animales,"Animales.dat");
             jComboBoxjAnimal.setModel(new javax.swing.DefaultComboBoxModel(listaAnimales));
         }
         catch(IOException f){
@@ -272,7 +272,7 @@ public class addCuidados extends javax.swing.JFrame {
             cuidados.add(cuidado);
             JOptionPane.showMessageDialog(null,"Cuidado añadido correctamente");
             try {
-                util.guardar(cuidados, "Cuidados.dat");
+                utilities.guardar(cuidados, "Cuidados.dat");
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al guardar el fichero");            
             }

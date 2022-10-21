@@ -10,18 +10,17 @@ import java.io.Serializable;
  * @author sergio
  */
 public class Animal implements Serializable{
-    private String name, especie, subespecie;
+    private String name, especie;
     private float peso;
 
-    public Animal(String name, String especie, String subespecie, float peso) {
+    public Animal(String name, String especie, float peso) {
         this.name = name;
         this.especie = especie;
-        this.subespecie = subespecie;
         this.peso = peso;
     }
     
     public String toString(){
-        return "Nombre: "+this.name+"\nEspecie:"+this.especie+"\nSubespecie:"+this.subespecie+"\nPeso:"+this.peso;
+        return "Nombre: "+this.name+"\nEspecie:"+this.especie+"\nPeso:"+this.peso;
     }
     
     public String getName() {
@@ -38,14 +37,6 @@ public class Animal implements Serializable{
 
     public void setEspecie(String especie) {
         this.especie = especie;
-    }
-
-    public String getSubespecie() {
-        return subespecie;
-    }
-
-    public void setSubespecie(String subespecie) {
-        this.subespecie = subespecie;
     }
 
     public float getPeso() {

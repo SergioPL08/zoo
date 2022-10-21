@@ -1,4 +1,4 @@
-package interfaz;
+package interfazFicheros;
 
 
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import zoo.Animal;
 import util.Lista;
-import util.util;
+import util.utilities;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -49,11 +49,9 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         jPanel2 = new javax.swing.JPanel();
         LnombreAnimal = new javax.swing.JLabel();
         LespecieAnimal = new javax.swing.JLabel();
-        LsubespecieAnimal = new javax.swing.JLabel();
         LpesoAnimal = new javax.swing.JLabel();
         TNombreAnimal = new javax.swing.JTextField();
         TEspecie = new javax.swing.JTextField();
-        TSubespecie = new javax.swing.JTextField();
         SPesoAnimal = new javax.swing.JSpinner();
         JButtonAddAnimal = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
@@ -85,20 +83,12 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.gridy = 4;
         jPanel2.add(LespecieAnimal, gridBagConstraints);
 
-        LsubespecieAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        LsubespecieAnimal.setForeground(new java.awt.Color(0, 153, 51));
-        LsubespecieAnimal.setText("Subespecie");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        jPanel2.add(LsubespecieAnimal, gridBagConstraints);
-
         LpesoAnimal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         LpesoAnimal.setForeground(new java.awt.Color(0, 153, 51));
         LpesoAnimal.setText("Peso");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 6;
         jPanel2.add(LpesoAnimal, gridBagConstraints);
 
         TNombreAnimal.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,22 +109,13 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints.gridy = 4;
         jPanel2.add(TEspecie, gridBagConstraints);
 
-        TSubespecie.setBackground(new java.awt.Color(255, 255, 255));
-        TSubespecie.setForeground(new java.awt.Color(0, 0, 0));
-        TSubespecie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
-        TSubespecie.setPreferredSize(new java.awt.Dimension(100, 24));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        jPanel2.add(TSubespecie, gridBagConstraints);
-
         SPesoAnimal.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
         SPesoAnimal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
         SPesoAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         SPesoAnimal.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 6;
         jPanel2.add(SPesoAnimal, gridBagConstraints);
 
         JButtonAddAnimal.setBackground(new java.awt.Color(51, 51, 51));
@@ -150,7 +131,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 8;
         jPanel2.add(JButtonAddAnimal, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -174,7 +155,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 8;
         jPanel2.add(jButtonCargar, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,7 +181,6 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
     private void JButtonAddAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonAddAnimalActionPerformed
         String nombre = TNombreAnimal.getText();
         String especie = TEspecie.getText();
-        String subespecie = TSubespecie.getText();
         float peso = (float) SPesoAnimal.getValue();
         //(String name, String especie, String subespecie, float peso)
         if(nombre.equals("")){
@@ -209,23 +189,19 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         else if(especie.equals("")){
             JOptionPane.showMessageDialog(null, "Introduce la especie del animal");
         }
-        else if(subespecie.equals("")){
-            JOptionPane.showMessageDialog(null, "Introduce la subespecie del animal");
-        }
         else if(peso==0){
             JOptionPane.showMessageDialog(null, "El peso no puede ser 0");
         }
         else{
-            Animal animal = new Animal(nombre,especie,subespecie,peso);
+            Animal animal = new Animal(nombre,especie,peso);
             lista.add(animal);
             System.out.println(lista);
             JOptionPane.showMessageDialog(null, "Animal añadido correctamente");
             TNombreAnimal.setText("");
             TEspecie.setText("");
-            TSubespecie.setText("");
             SPesoAnimal.setValue(0);
             try{
-                util.guardar(lista,"Animales.dat");
+                utilities.guardar(lista,"Animales.dat");
             }
             catch(IOException ex){
                 JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
@@ -235,7 +211,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         try{
-            util.cargar(lista,"Animales.dat");
+            utilities.cargar(lista,"Animales.dat");
             JOptionPane.showMessageDialog(null, "Archivo cargado correctamente");
         }
         catch(IOException ex){
@@ -287,11 +263,9 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
     private javax.swing.JLabel LespecieAnimal;
     private javax.swing.JLabel LnombreAnimal;
     private javax.swing.JLabel LpesoAnimal;
-    private javax.swing.JLabel LsubespecieAnimal;
     private javax.swing.JSpinner SPesoAnimal;
     private javax.swing.JTextField TEspecie;
     private javax.swing.JTextField TNombreAnimal;
-    private javax.swing.JTextField TSubespecie;
     private javax.swing.JButton jButtonCargar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;

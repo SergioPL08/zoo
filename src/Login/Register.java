@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import util.util;
+import util.utilities;
 import zoo.User;
 
 /**
@@ -165,7 +165,7 @@ public class Register extends javax.swing.JFrame {
                 jTextFieldPass.setText("");
                 jTextFieldConfirmPass.setText("");
                 try{
-                    util.guardar(users,"Users.dat");
+                    utilities.guardar(users,"Users.dat");
                 }
                 catch(IOException ex){
                     //JOptionPane.showMessageDialog(null, "Error al guardar el fichero");

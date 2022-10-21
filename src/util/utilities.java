@@ -20,7 +20,7 @@ import zoo.Animal;
  *
  * @author Sergio
  */
-public class util {
+public class utilities {
     public static void guardar (ArrayList lista, String ruta) throws IOException{
         FileOutputStream fos = new FileOutputStream(ruta);
         ObjectOutputStream write = new ObjectOutputStream(fos);
@@ -28,7 +28,7 @@ public class util {
         write.close();
     }
     public static String[] rellenator(ArrayList lista, String ruta) throws IOException, ClassNotFoundException {
-        lista = util.cargar(lista, ruta);
+        lista = utilities.cargar(lista, ruta);
                 Iterator iter = lista.iterator();
                 String [] listados = new String[lista.size()];
                 int i = 0;

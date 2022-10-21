@@ -1,4 +1,4 @@
-package interfaz;
+package interfazFicheros;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import util.util;
+import util.utilities;
 import zoo.Especialidad;
 import zoo.Cuidador;
 
@@ -28,9 +28,9 @@ public class addCuidadores extends javax.swing.JFrame {
         initComponents();
         especialidades = new ArrayList<Especialidad>();
         try{
-            especialidades = util.cargar(especialidades, "Especialidades.dat");
+            especialidades = utilities.cargar(especialidades, "Especialidades.dat");
             String [] listaEspecialidades = new String[especialidades.size()];
-            listaEspecialidades = util.rellenator(especialidades,"Especialidades.dat");
+            listaEspecialidades = utilities.rellenator(especialidades,"Especialidades.dat");
             jComboBoxEspecialidad.setModel(new javax.swing.DefaultComboBoxModel(listaEspecialidades));
         }
         catch(IOException f){
@@ -217,7 +217,7 @@ public class addCuidadores extends javax.swing.JFrame {
             Cuidador cuidador = new Cuidador(nombre,ape,num,esp);
             JOptionPane.showMessageDialog(null,"Cuidado añadido correctamente");
             try {
-                util.guardar(especialidades, "Cuidadores.dat");
+                utilities.guardar(especialidades, "Cuidadores.dat");
                 JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");            
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al guardar el fichero");            
