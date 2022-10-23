@@ -4,10 +4,13 @@
  */
 package util;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Sergio
@@ -19,7 +22,7 @@ public class Conexion {
     private String dbName;
     private String user;
     private String pass;
-
+    Connection conex;
     public Conexion(String host, String puerto, String dbName, String user, String pass) {
         this.host = host;
         this.port = puerto;
@@ -48,6 +51,17 @@ public class Conexion {
           } catch (Exception e) {
             System.out.println("Error cerrando conexiones: " + e.toString());
           } 
+    }
+    
+    public ResultSet getSelect(int resultSetType, int resultSetConcurrency, String consulta){
+        try {
+            Statement st= conex.createStatement(resultSetType, resultSetConcurrency);
+            ResultSet rs=st.executeQuery(consulta);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
    
 }

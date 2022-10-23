@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import util.Conexion;
 import zoo.Animal;
 import util.utilities;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author Sergio
@@ -22,6 +24,8 @@ public class prueba extends javax.swing.JFrame {
     ArrayList<Animal> animales;
     DefaultTableModel modelo;
     Conexion miConexion;
+    
+    
     /**
      * Creates new form AnimalTable
      */
@@ -29,7 +33,8 @@ public class prueba extends javax.swing.JFrame {
         initComponents();
         animales = new ArrayList<Animal>();
         modelo = (DefaultTableModel) jTable1.getModel();
-        miConexion = new Conexion("localhost","3306","zoologico","zoo","pepe");
+        
+        
     }
 
     /**
@@ -120,12 +125,10 @@ public class prueba extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-        try{
-            String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
-            Connection conDB = (Connection) miConexion.makeConnect();
-            
-            //ResultSet rs = st
-            
+        miConexion = new Conexion("localhost","3306","zoologico","root","pepe");
+        Connection conDB = miConexion.makeConnect();
+        String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
+        Statement st = 
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     /**
