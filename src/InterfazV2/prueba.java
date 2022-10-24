@@ -4,9 +4,9 @@
  */
 package InterfazV2;
 
-import com.sun.jdi.connect.spi.Connection;
-import java.beans.Statement;
+import java.sql.Statement;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -14,8 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import util.Conexion;
 import zoo.Animal;
 import util.utilities;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Sergio
@@ -54,7 +56,16 @@ public class prueba extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,10 +136,20 @@ public class prueba extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-        miConexion = new Conexion("localhost","3306","zoologico","root","pepe");
-        Connection conDB = miConexion.makeConnect();
-        String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
-        Statement st = 
+        try {
+            //String host, String puerto, String dbName, String user, String pass
+            miConexion = new Conexion("localhost","3306","zoo","root","");
+            Connection conDB = miConexion.makeConnect();
+            String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
+            Statement st = conDB.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            while(rs.next()){
+                modelo.addRow(new Object[] {rs.getString(0),rs.getString(1),rs.getFloat(2)});
+            }
+            miConexion.closeConnect(conDB);
+        } catch (SQLException ex) {
+            Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
     /**
