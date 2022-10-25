@@ -13,30 +13,22 @@ import javax.swing.JOptionPane;
 import util.utilities;
 import zoo.User;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import util.Conexion;
 /**
  *
  * @author sergio
  */
 public class PanelLogin extends javax.swing.JFrame {
     ArrayList users;
+    Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
     /**
      * Creates new form PanelLogin
      */
     public PanelLogin() {
         initComponents();
         users = new ArrayList();
-        try{
-            FileInputStream fis = new FileInputStream("Users.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            users = (ArrayList<User>) ois.readObject();
-            ois.close();
-        }
-        catch(IOException f){
-            
-        }
-        catch (ClassNotFoundException ex) {
-            
-        }
     }
 
     /**
@@ -55,13 +47,13 @@ public class PanelLogin extends javax.swing.JFrame {
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelPass = new javax.swing.JLabel();
-        jTextFieldPass = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabelCarpincho = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
         jLabelCrearCuenta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(2063, 700));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -96,12 +88,9 @@ public class PanelLogin extends javax.swing.JFrame {
         jLabelPass.setText("Contraseña");
         jPanel2.add(jLabelPass);
 
-        jTextFieldPass.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldPass.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jTextFieldPass.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 36), new java.awt.Color(0, 153, 51))); // NOI18N
-        jTextFieldPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
-        jPanel2.add(jTextFieldPass);
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jPasswordField1);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 360, -1));
 
@@ -146,11 +135,13 @@ public class PanelLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String nombre = jTextFieldNombre.getText().trim();
-        String pass = jTextFieldPass.getText().trim();
+        char[] pass = jPasswordField1.getPassword();
+        String passwd = new String (pass);
         if(nombre.equals("")){
             JOptionPane.showMessageDialog(null, "Introduce el nombre");
         } 
@@ -158,18 +149,17 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "La contraseña está vacía");
         }
         else{
-            User user = new User(nombre,pass);
-            if(users.indexOf(user)!=0){
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            ResultSet rs1 =miConexion.getLogin("SELECT * FROM users WHERE USER = '"+nombre+"' AND pass ='"+passwd+"'");
+            System.out.println(rs1);
+            if(rs1==null){
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
             }
             else{
-                users.add(user);
                 JOptionPane.showMessageDialog(null, "Usuario correcto");
-                jTextFieldNombre.setText("");
-                jTextFieldPass.setText("");
             }
+            
+            
         }
-        
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void crearCuenta(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearCuenta
@@ -227,7 +217,7 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPass;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldNombre;
-    private javax.swing.JTextField jTextFieldPass;
     // End of variables declaration//GEN-END:variables
 }

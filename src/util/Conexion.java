@@ -35,11 +35,12 @@ public class Conexion {
     
     public Connection makeConnect(){
         try{
-            String url="jdbc:mariadb://"+this.host+":"+this.port+"/"+this.dbName;
+            //jdbc:mysql://localhost:3306/zoo?zeroDateTimeBehavior=CONVERT_TO_NULL [zoologico on Default schema]
+            String url="jdbc:mysql://"+this.host+":"+this.port+"/"+this.dbName;
             Connection conex = DriverManager.getConnection(url, this.user, this.pass);
             return conex;
         }catch(SQLException ex){
-            System.out.println("Error al establecer la conexion "+ex.getMessage());
+            System.err.println("Error al establecer la conexion "+ex.getMessage());
             return null;
         }
         
@@ -53,15 +54,65 @@ public class Conexion {
           } 
     }
     
-    public ResultSet getSelect(int resultSetType, int resultSetConcurrency, String consulta){
+    public ResultSet getLogin(String consulta){
         try {
-            Statement st= conex.createStatement(resultSetType, resultSetConcurrency);
-            ResultSet rs=st.executeQuery(consulta);
+            Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
+            Connection conDB = miConexion.makeConnect();
+            Statement st = conDB.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = st.executeQuery(consulta);
+            if(!rs.first()){
+                return null;
+            }
+            else{
+                return rs;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet getSelect(String consulta){
+        try {
+            Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
+            Connection conDB = miConexion.makeConnect();
+            Statement st = conDB.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = st.executeQuery(consulta);
+            return rs;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet insertTable(String consulta){
+        try {
+            Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
+            Connection conDB = miConexion.makeConnect();
+            Statement st = conDB.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            rs.moveToInsertRow();
+            rs.updateString(port, port);
+            miConexion.closeConnect(conDB);
             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public static ResultSet getTablaRegistro(int resultSetType, int resultSetConcurrence, String consulta){
+        try {
+            Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
+            Connection conDB = miConexion.makeConnect();
+            Statement smt = conDB.createStatement(resultSetType,resultSetConcurrence);
+            ResultSet rs = smt.executeQuery(consulta);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
    
 }

@@ -7,8 +7,13 @@ package Login;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import util.Conexion;
 import util.utilities;
 import zoo.User;
 
@@ -18,25 +23,15 @@ import zoo.User;
  */
 public class Register extends javax.swing.JFrame {
     ArrayList users;
+    Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
+
     /**
      * Creates new form Register
      */
     public Register() {
         initComponents();
         users = new ArrayList();
-        try{
-            FileInputStream fis = new FileInputStream("Users.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            users = (ArrayList<User>) ois.readObject();
-            ois.close();
-        }
-        catch(IOException f){
-            
-        }
-        catch (ClassNotFoundException ex) {
-            
-        }
-    }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,11 +50,11 @@ public class Register extends javax.swing.JFrame {
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelPass = new javax.swing.JLabel();
-        jTextFieldPass = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
         jLabelNombre1 = new javax.swing.JLabel();
-        jTextFieldConfirmPass = new javax.swing.JTextField();
+        jPasswordFieldConfirmar = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
@@ -104,24 +99,18 @@ public class Register extends javax.swing.JFrame {
         jLabelPass.setText("Contraseña");
         jPanel2.add(jLabelPass);
 
-        jTextFieldPass.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldPass.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jTextFieldPass.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 36), new java.awt.Color(0, 153, 51))); // NOI18N
-        jTextFieldPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
-        jPanel2.add(jTextFieldPass);
+        jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jPasswordField);
 
         jLabelNombre1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabelNombre1.setForeground(new java.awt.Color(0, 153, 51));
         jLabelNombre1.setText("Confirmar");
         jPanel2.add(jLabelNombre1);
 
-        jTextFieldConfirmPass.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldConfirmPass.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jTextFieldConfirmPass.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldConfirmPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 36), new java.awt.Color(0, 153, 51))); // NOI18N
-        jTextFieldConfirmPass.setMargin(new java.awt.Insets(0, 0, 1, 0));
-        jPanel2.add(jTextFieldConfirmPass);
+        jPasswordFieldConfirmar.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordFieldConfirmar.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jPasswordFieldConfirmar);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 370, 340));
 
@@ -145,32 +134,46 @@ public class Register extends javax.swing.JFrame {
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         String nombre = jTextFieldNombre.getText().trim();
-        String pass = jTextFieldPass.getText().trim();
-        String confirm = jTextFieldConfirmPass.getText().trim();
+        char[] pass = jPasswordField.getPassword();
+        String passwd = new String (pass);
+        char[] confirm = jPasswordFieldConfirmar.getPassword();
+        String confirmar = new String (confirm);
         if(nombre.equals("")){
             JOptionPane.showMessageDialog(null, "Introduce el nombre");
         } 
         else if(pass.equals("")){
             JOptionPane.showMessageDialog(null, "La contraseña está vacía");
         }
+        else if(!passwd.equals(confirmar)){
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+        }
         else{
-            User user = new User(nombre,pass);
-            if(users.indexOf(user)!=-1){
-                JOptionPane.showMessageDialog(null, "El usuario ya existe");
-            }
-            else{
-                users.add(user);
-                JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
-                jTextFieldNombre.setText("");
-                jTextFieldPass.setText("");
-                jTextFieldConfirmPass.setText("");
-                try{
-                    utilities.guardar(users,"Users.dat");
+            try {
+                ResultSet rs1 =miConexion.getLogin("SELECT * FROM users WHERE USER = '"+nombre+"'");
+                System.out.println(rs1);
+                if(rs1==null){
+                    String consulta = "Select * from users";
+                    ResultSet rs = Conexion.getTablaRegistro(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE, consulta);
+                    //Irse a la ultima linea de la tabla
+                    rs.moveToInsertRow();
+                    //
+                    rs.updateString("user",nombre);
+                    rs.updateString("pass",passwd);
+                    rs.insertRow();
+                    //users.add(user);
+                    JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
+                    jTextFieldNombre.setText("");
+                    jPasswordField.setText("");
+                    jPasswordFieldConfirmar.setText("");
                 }
-                catch(IOException ex){
-                    //JOptionPane.showMessageDialog(null, "Error al guardar el fichero");
+                else{
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
         }
         
     }//GEN-LAST:event_jButtonRegisterActionPerformed
@@ -219,8 +222,8 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPass;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldConfirmPass;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JPasswordField jPasswordFieldConfirmar;
     private javax.swing.JTextField jTextFieldNombre;
-    private javax.swing.JTextField jTextFieldPass;
     // End of variables declaration//GEN-END:variables
 }
