@@ -21,6 +21,7 @@ import zoo.Animal;
  * @author Sergio
  */
 public class utilities {
+    @Deprecated
     public static void guardar (ArrayList lista, String ruta) throws IOException{
         FileOutputStream fos = new FileOutputStream(ruta);
         ObjectOutputStream write = new ObjectOutputStream(fos);
@@ -40,6 +41,7 @@ public class utilities {
                 }
         return listados;
     }
+    @Deprecated
     public static ArrayList cargar (ArrayList lista,String ruta) throws IOException, ClassNotFoundException{
         FileInputStream fis = new FileInputStream(ruta);
         ObjectInputStream ois = new ObjectInputStream(fis);

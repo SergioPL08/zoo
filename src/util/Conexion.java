@@ -79,7 +79,6 @@ public class Conexion {
             Statement st = conDB.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = st.executeQuery(consulta);
             return rs;
-            
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +93,6 @@ public class Conexion {
             ResultSet rs = st.executeQuery(consulta);
             rs.moveToInsertRow();
             rs.updateString(port, port);
-            miConexion.closeConnect(conDB);
             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,7 +100,7 @@ public class Conexion {
         return null;
     }
     
-    public static ResultSet getTablaRegistro(int resultSetType, int resultSetConcurrence, String consulta){
+    public static ResultSet getTabla(int resultSetType, int resultSetConcurrence, String consulta){
         try {
             Conexion miConexion = new Conexion("localhost","3306","zoo","zoologico","pepe");
             Connection conDB = miConexion.makeConnect();

@@ -19,6 +19,7 @@ import zoo.Cuidador;
  *
  * @author sergio
  */
+@Deprecated
 public class addCuidadores extends javax.swing.JFrame {
     ArrayList<Especialidad> especialidades;
     /**

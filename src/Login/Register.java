@@ -153,7 +153,7 @@ public class Register extends javax.swing.JFrame {
                 System.out.println(rs1);
                 if(rs1==null){
                     String consulta = "Select * from users";
-                    ResultSet rs = Conexion.getTablaRegistro(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE, consulta);
+                    ResultSet rs = Conexion.getTabla(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE, consulta);
                     //Irse a la ultima linea de la tabla
                     rs.moveToInsertRow();
                     //

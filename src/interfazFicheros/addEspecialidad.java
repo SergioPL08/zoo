@@ -17,6 +17,7 @@ import zoo.*;
  *
  * @author sergio
  */
+@Deprecated
 public class addEspecialidad extends javax.swing.JFrame {
     ArrayList<Animal> lista;
     ArrayList<Especialidad> especialidades;

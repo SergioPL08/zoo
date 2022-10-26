@@ -13,8 +13,10 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import zoo.Animal;
@@ -22,6 +24,7 @@ import util.Lista;
 import util.utilities;
 import zoo.Animal;
 import util.Conexion;
+import zoo.Especie;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -43,20 +46,34 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         initComponents();
         animales = new ArrayList<Animal>();
         miConexion = new Conexion("localhost","3306","zoologico","zoo","pepe");
+        //Rellenamos la tabla de animales con los animales de la base de datos
         modelo = (DefaultTableModel) jTable1.getModel();
         try {
-            //String host, String puerto, String dbName, String user, String pass
             String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
-            ResultSet rs = miConexion.getSelect(consulta);
-            while(rs.next()){
-                modelo.addRow(new Object[] {rs.getString(1),rs.getString(3),rs.getFloat(2)});
+            ResultSet rsTabla = miConexion.getSelect(consulta);
+            while(rsTabla.next()){
+                modelo.addRow(new Object[] {rsTabla.getString(1),rsTabla.getString(3),rsTabla.getFloat(2)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(tableAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Rellenamos la caja de especies
+        try{
+            String consultaEspecie = "SELECT * FROM especie";
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            ResultSet rsEspecie = miConexion.getSelect(consultaEspecie);
+            while (rsEspecie.next()){
+                Especie esp = new Especie(rsEspecie.getInt(1),rsEspecie.getString(2));
+                model.addElement(esp);
+                System.out.println(rsEspecie.getInt(1)+rsEspecie.getString(2));
+            }
+            jComboBoxEspecie.setModel(model);
+        }
+        catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+        
     }
-
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,6 +199,7 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
         jPanel2.add(JButtonAddAnimal, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -205,21 +223,21 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         jPanel2.add(jButtonCargar, gridBagConstraints);
 
-        jComboBoxEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         jPanel2.add(jComboBoxEspecie, gridBagConstraints);
 
         jButton1.setText("jButton1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
-        jPanel2.add(jButton1, gridBagConstraints);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,16 +278,39 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
         else{
             Animal animal = new Animal(nombre,especie,peso);
             animales.add(animal);
-            System.out.println(animales);
+            //System.out.println(animales);
             JOptionPane.showMessageDialog(null, "Animal añadido correctamente");
             TNombreAnimal.setText("");
             SPesoAnimal.setValue(0);
-            Connection conDB = (Connection) miConexion.makeConnect();
-            
-            miConexion.closeConnect((java.sql.Connection) conDB);
+            /*
+            try {
+                String consulta = "SELECT animal.NOMBRE,animal.PESO,especie.NOMBRE_ESPECIE FROM animal, especie WHERE animal.ESPECIE=especie.ID_ESPECIE";
+                ResultSet rs1 =miConexion.getSelect(consulta);
+                System.out.println(rs1);
+                if(rs1==null){
+                    ResultSet rs = Conexion.getTablaRegistro(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE, "Select * from users");
+                    //Irse a la ultima linea de la tabla
+                    rs.moveToInsertRow();
+                    //
+                    rs.updateString("user",nombre);
+                    rs.updateString("pass",passwd);
+                    rs.insertRow();
+                    //users.add(user);
+                    JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
+                    TNombreAnimal.setText("");
+                    SPesoAnimal.setValue(0);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            */
         }
     }//GEN-LAST:event_JButtonAddAnimalActionPerformed
 
+    @Deprecated
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         try{
             utilities.cargar(animales,"Animales.dat");
@@ -282,6 +323,11 @@ public class addAnimal extends javax.swing.JFrame implements Serializable{
             JOptionPane.showMessageDialog(null, "Archivo no encontrado");
         }
     }//GEN-LAST:event_jButtonCargarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object item = jComboBoxEspecie.getSelectedItem();
+        JOptionPane.showMessageDialog(this, ((Especie)item).getId());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

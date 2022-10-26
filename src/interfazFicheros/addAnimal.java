@@ -23,6 +23,7 @@ import util.utilities;
  *
  * @author sergio
  */
+@Deprecated
 public class addAnimal extends javax.swing.JFrame implements Serializable{
     ArrayList<Animal> lista;
     

@@ -13,6 +13,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form menuPrincipalñ
      */
+    @Deprecated
     public menuPrincipal() {
         initComponents();
     }

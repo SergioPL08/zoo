@@ -27,6 +27,7 @@ import util.*;
  *
  * @author sergio
  */
+@Deprecated
 public class addCuidados extends javax.swing.JFrame {
 
     ArrayList<Animal> animales;
